@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/jquery.fullPage.css">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/jquery.fullpage.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .section {
+            overflow: hidden;
+        }
+        
+        .section.one {
+            overflow: hidden;
+        }
+        
+        .one .logo {
+            width: 251px;
+            height: 186px;
+            background: url("images/logo.png") no-repeat;
+            margin: 80px auto;
+        }
+        
+        .one .text {
+            text-align: center;
+        }
+        
+        .one .text img {
+            margin: 0 30px;
+            opacity: .4;
+        }
+        
+        .one .info {
+            height: 49px;
+            width: 772px;
+            background: url(images/info_1.png) no-repeat;
+            margin: 40px auto;
+        }
+        
+        .section.one.current .text img {
+            margin: 0 2px;
+            opacity: 1;
+            transition: all 1s;
+        }
+        
+        .second {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 0;
+        }
+        
+        .two .shield {
+            width: 500px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .two .shield img:nth-of-type(1) {
+            transform: translate(30px, 200px) rotate(60deg);
+        }
+        
+        .two .shield img:nth-of-type(2) {
+            transform: translate(60px, 160px) rotate(60deg);
+        }
+        
+        .two .shield img:nth-of-type(3) {
+            transform: translate(-30px, 200px) rotate(60deg);
+        }
+        
+        .two .shield img:nth-of-type(4) {
+            transform: translate(-60px, 200px) rotate(60deg);
+        }
+        
+        .two .shield img:nth-of-type(5) {
+            transform: translate(200px, -60px) rotate(60deg);
+        }
+        
+        .two .shield img:nth-of-type(6) {
+            transform: translate(-200px, 60px) rotate(60deg);
+        }
+        
+        .two .shield img:nth-of-type(7) {
+            transform: translate(-200px, -30px) rotate(60deg);
+        }
+        
+        .two .shield img:nth-of-type(8) {
+            transform: translate(-200px, 30px) rotate(60deg);
+        }
+        
+        .two .shield img:nth-of-type(9) {
+            transform: translate(180px, -80px) rotate(60deg);
+        }
+        
+        .two.current .shield img {
+            transform: translate(0, 0) rotate(0deg);
+            transition: all 1s;
+        }
+        
+        .third {
+            display: flex;
+            padding: 100px 0;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .circle {
+            width: 453px;
+            height: 449px;
+            background: url(images/circle.png) no-repeat;
+            /*display: flex;
+            justify-content: center;
+            align-items: center;*/
+        }
+        
+        .three .circle img {
+            opacity: .4;
+            margin-top: 350px;
+            margin-left: -180px;
+        }
+        
+        .section.three.current .circle img {
+            margin: 125px 122px;
+            opacity: 1;
+            transition: all 1s;
+        }
+        
+        .fourth {
+            padding: 100px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .fourth .moive {
+            width: 529px;
+            height: 400px;
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        
+        .search {
+            width: 529px;
+            height: 66px;
+            background: url(images/search.png) no-repeat;
+            transform: translateX(-150%);
+            position: relative;
+        }
+        
+        .section.current .search {
+            transform: translate(0);
+            transition: all 1s;
+        }
+        
+        .search .key {
+            width: 0px;
+            height: 22px;
+            background-image: url(images/key.png);
+            position: absolute;
+            top: 24px;
+            left: 15px;
+        }
+        
+        .section.current .search .key {
+            width: 99px;
+            height: 22px;
+            transition: all 1s 1s;
+        }
+        
+        .moive .result {
+            height: 372px;
+            width: 529px;
+            height: 0px;
+            background-image: url(images/result.png);
+            position: absolute;
+            top: 50px;
+        }
+        
+        .section.current .moive .result {
+            height: 372px;
+            transition: all 1s 2s;
+        }
+        
+        .fivth {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .fivth img {
+            width: 1077px;
+            height: 134px;
+            padding: 40px 0;
+        }
+        
+        .brows {
+            width: 1004px;
+            height: 420px;
+            background-color: rgba(255, 255, 255, 0);
+            position: relative;
+        }
+        
+        .line_top,
+        .line_buttom {
+            width: 100%;
+            height: 1px;
+            background-color: #fff;
+        }
+        
+        .line_top {
+            position: absolute;
+            right: -200%;
+        }
+        
+        .section.current.five .fivth .brows .line_top {
+            right: 0;
+            transition: all 1s;
+        }
+        
+        .line_buttom {
+            position: absolute;
+            bottom: 0;
+            left: -200%;
+        }
+        
+        .section.current.five .fivth .brows .line_buttom {
+            left: 0;
+            transition: all 1s;
+        }
+        
+        .line_left,
+        .line_right {
+            height: 100%;
+            width: 1px;
+            background-color: #fff;
+        }
+        
+        .line_left {
+            position: absolute;
+            top: -200%;
+        }
+        
+        .section.current.five .fivth .brows .line_left {
+            top: 0;
+            transition: all 1s;
+        }
+        
+        .line_right {
+            position: absolute;
+            right: 0;
+            bottom: -200%;
+        }
+        
+        .section.current.five .fivth .brows .line_right {
+            right: 0;
+            bottom: 0;
+            transition: all 1s;
+        }
+        
+        .nav {
+            width: 0px;
+            height: 79px;
+            background-image: url(images/toolbar.png);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section.current.five .fivth .nav {
+            width: 1004px;
+            transition: all 1s 2s;
+        }
+        
+        .nav_line_top,
+        .nav_line_bottom {
+            width: 90%;
+            height: 1px;
+            background-color: #fff;
+        }
+        
+        .nav_line_bottom {
+            position: absolute;
+            bottom: 21px;
+            left: -200%;
+        }
+        
+        .nav_line_top {
+            position: absolute;
+            top: 31px;
+            left: -200%;
+        }
+        
+        .section.current.five .fivth .nav_line_top,
+        .section.current.five .fivth .nav_line_bottom {
+            left: 80px;
+            transition: all 1s 1s;
+        }
+        
+        .nav_line_right,
+        .nav_line_left {
+            width: 1px;
+            height: 34%;
+            background-color: #fff;
+        }
+        
+        .nav_line_right {
+            position: absolute;
+            right: 19px;
+            top: -200%;
+        }
+        
+        .nav_line_left {
+            position: absolute;
+            left: 79px;
+            top: -200%;
+        }
+        
+        .section.current.five .fivth .nav_line_right,
+        .section.current.five .fivth .nav_line_left {
+            top: 31px;
+            transition: all 1s 1s;
+        }
+        
+        #menu {
+            display: flex;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            list-style: none;
+            z-index: 999;
+            width: 100%;
+            height: 50px;
+        }
+        
+        #menu li {
+            width: 20%;
+            background-color: rgba(0, 0, 0, .2);
+            border: 1px solid #999;
+            text-align: center;
+            line-height: 50px;
+        }
+        
+        #menu .active {
+            background-color: deepskyblue;
+        }
+        
+        #menu li a {
+            text-decoration: none;
+            color: #666;
+        }
+        
+        #menu .active a{
+            color: #fff;
+        }
+        
+        #fp-nav ul li a span {
+            border: 1px solid #ccc;
+            background: rgba(255, 255, 255, 0);
+        }
+        
+        #fp-nav ul li a.active span {
+            background: #fff;
+            box-shadow: 0 0 5px #fff;
+            width: 10px;
+            height: 10px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="menu">
+        <li data-menuanchor="page1" class="active"><a href="#page1">第一屏</a></li>
+        <li data-menuanchor="page2"><a href="#page2">第二屏</a></li>
+        <li data-menuanchor="page3"><a href="#page3">第三屏</a></li>
+        <li data-menuanchor="page4"><a href="#page4">第四屏</a></li>
+        <li data-menuanchor="page5"><a href="#page5">第五屏</a></li>
+    </ul>
+    <div id="box">
+        <!--每一个class为section的div都是一屏,section这个类是固定的-->
+        <div class="section one ">
+            <div class="logo"></div>
+            <div class="text">
+                <img src="images/text_1.png" alt="">
+                <img src="images/text_2.png" alt="">
+                <img src="images/text_3.png" alt="">
+                <img src="images/text_4.png" alt="">
+                <img src="images/text_5.png" alt="">
+                <img src="images/text_6.png" alt="">
+                <img src="images/text_7.png" alt="">
+                <img src="images/text_8.png" alt="">
+            </div>
+            <div class="info"></div>
+        </div>
+        <div class="section two">
+            <div class="second">
+                <div class="shield">
+                    <img src="images/shield_1.png" alt="">
+                    <img src="images/shield_2.png" alt="">
+                    <img src="images/shield_3.png" alt="">
+                    <img src="images/shield_4.png" alt="">
+                    <img src="images/shield_5.png" alt="">
+                    <img src="images/shield_6.png" alt="">
+                    <img src="images/shield_7.png" alt="">
+                    <img src="images/shield_8.png" alt="">
+                    <img src="images/shield_9.png" alt="">
+                </div>
+                <div class="content">
+                    <img src="images/info_2.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="section three">
+            <div class="third">
+                <div class="content_3">
+                    <img src="images/info_3.png" alt="">
+                </div>
+                <div class="circle">
+                    <img src="images/rocket.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="section four">
+            <div class="fourth">
+                <div class="moive">
+                    <div class="search">
+                        <div class="key"></div>
+                    </div>
+                    <div class="result"></div>
+                </div>
+                <div class="content_4">
+                    <img src="images/info_4.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="section five">
+            <div class="fivth">
+                <img src="images/info_5.png" alt="">
+                <div class="brows">
+                    <div class="line_top"></div>
+                    <div class="line_right"></div>
+                    <div class="line_buttom"></div>
+                    <div class="line_left"></div>
+                    <div class="nav">
+                        <div class="nav_line_top"></div>
+                        <div class="nav_line_right"></div>
+                        <div class="nav_line_bottom"></div>
+                        <div class="nav_line_left"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#box").fullpage({
+            sectionsColor: ["orange", "blue", "green", "aqua", "skyblue"],
+            verticalCentered: false,
+            anchors: ['page1', 'page2', 'page3', 'page4', 'page5'],
+            menu: '#menu',
+            navigation: true,
+            afterLoad: function (anchorLink, index) {
+                $(".section").eq(index - 1).addClass("current").siblings().removeClass("current");
+            }
+        });
+    </script>
+</body>
+
+</html>
